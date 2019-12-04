@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">MoviesAPP</string>
+    <string name="title_home">Movies</string>
+    <string name="title_dashboard">Series</string>
+    <string name="title_notifications">Favorites</string>
+</resources>
