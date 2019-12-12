@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.moviesapp.models.MovieDetail;
 import com.example.moviesapp.models.MovieListed;
 import com.example.moviesapp.activity_view_details;
 import com.squareup.picasso.Picasso;
@@ -53,12 +54,18 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.moviesViewHo
         this.listener = new MovieAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(MovieListed movie) {
-                Log.i("MYDEBUG", "onItemClick: ");
+                //Log.i("MYDEBUG", "onItemClick: ");
                 Intent intent = new Intent(context, activity_view_details.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("MovieTitle", movie.getTitle());
                 intent.putExtra("MovieVoteAverage",String.valueOf(movie.getVote_average()));
                 intent.putExtra("MovieDesc", movie.getOverview());
+                intent.putExtra("MovieRelease", movie.getRelease_date().replace("-","/"));
+                float id = movie.getId();
+                intent.putExtra("id", id);
                 intent.putExtra("MovieImage",movie.getPoster_path());
+                //Log.i("MYDEBUG", "onItemClick: MovieID " + String.valueOf(movie.getId()));
+
                 context.startActivity(intent);
             }
         };
@@ -71,7 +78,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.moviesViewHo
     public moviesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_movie_item, parent, false);
         moviesViewHolder tvh = new moviesViewHolder(itemView);
-        Log.i("MYDEBUG", "onCreateViewHolder: ");
         return tvh;
     }
     /*
@@ -81,7 +87,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.moviesViewHo
     @Override
     public void onBindViewHolder(moviesViewHolder holder, int position) {
         final MovieListed movie = list.get(position);
-        Log.i("MYDEBUG", "onBindViewHolder: " + movie.getTitle());
+        Log.i("MYDEBUG", "MovieAdapter_onBindViewHolder: " + movie.getTitle());
         holder.bindMovie(movie, listener);
     }
 
@@ -110,7 +116,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.moviesViewHo
          */
         public moviesViewHolder(View itemView) {
             super(itemView);
-            Log.i("MYDEBUG", "itemView.getId().moviesViewHolder: " + itemView.getId());
+            Log.i("MYDEBUG", "MovieAdapter_itemView.getId().moviesViewHolder: " + itemView.getId());
             tvName = (TextView) itemView.findViewById(R.id.tv_name);
             tvImage = (ImageView) itemView.findViewById(R.id.image_movie);
             tvRatingBar = (RatingBar) itemView.findViewById(R.id.ratingBarMovie);
@@ -120,7 +126,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.moviesViewHo
         invocará al listener del adaptador cuando se haga click sobre la vista del viewHolder.
          */
         public void bindMovie(final MovieListed movie, final MovieAdapter.OnItemClickListener listener) {
-            Log.i("MYDEBUG", "bindMovie: " + movie.getTitle());
+            Log.i("MYDEBUG", "MovieAdapter_bindMovie: " + movie.getTitle());
             //Log.i("MYDEBUG", "tvName.getId(): " + tvName.getId());
             tvName.setText(movie.getTitle());
             //tvRating.setText(movie.getVote_average() + "/10");

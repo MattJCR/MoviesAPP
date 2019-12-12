@@ -1,6 +1,7 @@
 package com.example.moviesapp.ui.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,7 @@ public class MoviesFragment_TopRated extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_movies, container, false);
+        Log.i("MYDEBUG", "MovieFragment_TopRated_onCreateView: Entra");
         /* Enlaza el RecyclerView definido en el layout con el objeto recyclerView_top */
         recyclerView_top = (RecyclerView) root.findViewById(R.id.recycler_view_Movies);
         /* Establece que recyclerView_top tendrá un layout lineal, en concreto horizontal*/
@@ -72,6 +74,7 @@ public class MoviesFragment_TopRated extends Fragment {
         call.enqueue(new Callback<MovieFeed>() {
             @Override
             public void onResponse(Call<MovieFeed> call, Response<MovieFeed> response) {
+                Log.i("MYDEBUG", "loadSearch_TopRated_onResponse: " + response.code());
                 switch (response.code()) {
                     /* En caso de respuesta correcta */
                     case 200:

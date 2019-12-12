@@ -36,6 +36,10 @@ public class MovieDetail {
         return genres;
     }
 
+    public ArrayList<Object> getStudio () {
+        return production_companies;
+    }
+
     public boolean getAdult() {
         return adult;
     }

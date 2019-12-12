@@ -9,7 +9,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-public interface MovieService_TopRated {
-    @GET("movie/top_rated")
-    Call<MovieFeed> getTopRated(@Query("api_key") String apiKey, @Query("language") String language);
+public interface CreditsService {
+    @GET("/3/movie/{id}/credits")
+    Call<CreditsFeed> getCredits(@Path("id") String id, @Query("api_key") String apiKey, @Query("language") String language);
 }
