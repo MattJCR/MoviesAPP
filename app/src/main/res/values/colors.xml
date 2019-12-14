@@ -5,4 +5,6 @@
     <color name="colorAccent">#D81B60</color>
     <color name="colorBackgroud">#2C3848</color>
     <color name="colorSearch">#5D9FD3</color>
+    <color name="colorRatingBar100">#FFE300</color>
+    <color name="colorRatingBar50">#80FFE300</color>
 </resources>

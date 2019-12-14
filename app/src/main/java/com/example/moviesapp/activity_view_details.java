@@ -115,10 +115,11 @@ public class activity_view_details extends AppCompatActivity {
         Log.i("MYDEBUG", "activity_view_details_VALOR IDPelicula: " + id);
         loadSearch_MovieDetails(String.valueOf(((int) id)));
         loadSearch_Credits(String.valueOf(((int) id)));
+        fav.setTextColor(Color.WHITE);
         if (checkFavorite(ID)){
             fav.setTextColor(Color.RED);
         }else{
-            fav.setTextColor(Color.DKGRAY);
+            fav.setTextColor(Color.WHITE);
         }
     }
 
